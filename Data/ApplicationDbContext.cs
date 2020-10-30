@@ -17,5 +17,20 @@ namespace PersonalFinanceWebapp.Data
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Checking>()
+                .HasKey(check => new { check.Date, check.RunningBal, check.Amount });
+            modelBuilder.Entity<Credit>()
+                .HasKey(credit => new { credit.ReferenceNumber, credit.Payee });  
+            modelBuilder.Entity<VwBills>()
+            .HasNoKey()
+            .ToView("vw_Bills", "dbo");
+        }
+
+        public virtual DbSet<Checking> Checking { get; set; }
+        public virtual DbSet<Credit> Credit { get; set; }
+        public virtual DbSet<VwBills> VwBills { get; set; }
     }
 }
