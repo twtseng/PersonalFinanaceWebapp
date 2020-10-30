@@ -32,7 +32,8 @@ namespace PersonalFinanceWebapp.Controllers
         public IEnumerable<VwBills> GetBills()
         {
             _logger.LogInformation($"FinanceDataController.GetBills()");
-            return _dbContext.VwBills.ToList();
+            return _dbContext.VwBills
+            .Select(x => new VwBills(){ Amount=x.Amount, Bucket=x.Bucket, Date=x.Date, Source=x.Source, WeekNum=x.WeekNum, Description="xxxxxx DATA RESTRICTED xxxxx"});
         }
 
     }
