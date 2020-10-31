@@ -8,5 +8,9 @@ namespace PersonalFinanceWebapp.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        public enum Role {
+            Public=1,
+            Admin=2
+        }
     }
 }

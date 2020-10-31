@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.ComponentModel.DataAnnotations.Schema;
 namespace PersonalFinanceWebapp.Models
 {
     public partial class Credit
@@ -10,6 +10,7 @@ namespace PersonalFinanceWebapp.Models
         public string Bucket { get; set; }
         public string Payee { get; set; }
         public string Address { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
         public decimal? Amount { get; set; }
         public string JsonText { get; set; }
     }
