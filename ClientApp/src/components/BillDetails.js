@@ -29,7 +29,7 @@ export default () => {
       <tbody>
         {billsData.map(x => (
           <tr>
-            <td>{moment(x.date).format("MM/DD/YY")}</td>
+            <td>{x.dateString}</td>
             <td>{x.weekNum}</td>
             <td>{x.source}</td>
             <td>{x.bucket}</td>

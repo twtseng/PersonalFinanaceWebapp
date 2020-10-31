@@ -44,21 +44,15 @@ namespace PersonalFinanceWebapp.Controllers
             ApplicationUser user = this.GetApplicationUser();
             _logger.LogInformation($"FinanceDataController.GetBills(), user={user.Email}");
             var roles = await _userManager.GetRolesAsync(user);
+            var billData = _dbContext.VwBills.ToList();
             if (roles.Contains(ApplicationUser.Role.Admin.ToString()))
             {
-                return _dbContext.VwBills.ToList();
+                return billData;
             }
             else
             {
-                return _dbContext.VwBills
-                .Select(x => new VwBills(){ 
-                    Amount=x.Amount,
-                    Bucket=x.Bucket, 
-                    Date=x.Date, 
-                    Source=x.Source, 
-                    WeekNum=x.WeekNum, 
-                    Description="xxxxxx DATA RESTRICTED xxxxx"
-                    });
+                billData.ForEach(x => x.Description = "<Restricted data>");
+                return billData;
             }
         }
 

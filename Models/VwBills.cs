@@ -14,5 +14,20 @@ namespace PersonalFinanceWebapp.Models
         public string Description { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal? Amount { get; set; }
+        public string DateString { 
+            get {
+                return this.Date.Value.ToString("MM/dd/yy");
+            }
+        }
+        public int Year {
+            get {
+                return this.Date.Value.Year;
+            }
+        }
+        public int Month {
+            get {
+                return this.Date.Value.Month;
+            }
+        }
     }
 }

@@ -15,7 +15,7 @@ export default () => {
   return (
     <AppContext.Provider value={{billsData, setBillsData}}>
       <Layout>
-        <Route exact path='/' component={Home} />
+        <AuthorizeRoute exact path='/' component={Home} />
         <AuthorizeRoute path='/billDetails' component={BillDetails} />
         <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />
       </Layout>
