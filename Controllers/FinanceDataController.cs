@@ -39,20 +39,25 @@ namespace PersonalFinanceWebapp.Controllers
         }
 
         [HttpGet("Bills")]
-        public async Task<IEnumerable<VwBills>> GetBills()
+        public async Task<BillsPayload> GetBills()
         {
             ApplicationUser user = this.GetApplicationUser();
             _logger.LogInformation($"FinanceDataController.GetBills(), user={user.Email}");
             var roles = await _userManager.GetRolesAsync(user);
-            var billData = _dbContext.VwBills.ToList();
+            List<VwBills> billData = _dbContext.VwBills.ToList();
+            BillsPayload billsPayload = new BillsPayload();
+            billsPayload.Years = billData.Select(x => x.Year).Distinct().ToList();
+            billsPayload.Months = billData.Select(x => x.Month).Distinct().ToList();
+            billsPayload.Weeks = billData.Select(x => x.WeekNum.Value).Distinct().ToList();
+            billsPayload.Bills = billData;
             if (roles.Contains(ApplicationUser.Role.Admin.ToString()))
             {
-                return billData;
+                return billsPayload;
             }
             else
             {
                 billData.ForEach(x => x.Description = "<Restricted data>");
-                return billData;
+                return billsPayload;
             }
         }
 

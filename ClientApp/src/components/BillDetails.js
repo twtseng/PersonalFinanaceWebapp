@@ -1,19 +1,9 @@
 import React from 'react';
-import AppContext from './AppContext';
-import getBillsData from './GetBillsData';
-import moment from 'moment';
+import useBillsData from './useBillsData';
 
 export default () => {
-  const { billsData, setBillsData } = React.useContext(AppContext);
-  const refreshBillsData = async () => {
-    if (billsData.length == 0) {
-      const data = await getBillsData();
-      setBillsData(data);
-    }
-  }
-  React.useEffect(()=>{
-    refreshBillsData();
-  },[])  
+  const  billsData  = useBillsData();
+
   return (
     <table className='table table-striped' aria-labelledby="tabelLabel">
       <thead>
@@ -23,11 +13,11 @@ export default () => {
           <th>Source</th>
           <th>Bucket</th>
           <th>Description</th>
-          <th>Amounty Mount</th>
+          <th>Amt</th>
         </tr>
       </thead>
       <tbody>
-        {billsData.map(x => (
+        {billsData.bills.map(x => (
           <tr>
             <td>{x.dateString}</td>
             <td>{x.weekNum}</td>
