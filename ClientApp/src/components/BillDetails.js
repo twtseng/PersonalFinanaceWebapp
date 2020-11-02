@@ -1,8 +1,8 @@
 import React from 'react';
-import useBillsData from './useBillsData';
+import useExpensesData from './useExpensesData';
 
 export default () => {
-  const  billsData  = useBillsData();
+  const  billsData  = useExpensesData();
 
   return (
     <table className='table table-striped' aria-labelledby="tabelLabel">
@@ -11,18 +11,18 @@ export default () => {
           <th>Date</th>
           <th>WeekNum</th>
           <th>Source</th>
-          <th>Bucket</th>
+          <th>Category</th>
           <th>Description</th>
           <th>Amt</th>
         </tr>
       </thead>
       <tbody>
-        {billsData.bills.map(x => (
+        {billsData.map(x => (
           <tr>
             <td>{x.dateString}</td>
             <td>{x.weekNum}</td>
             <td>{x.source}</td>
-            <td>{x.bucket}</td>
+            <td>{x.category}</td>
             <td>{x.description}</td>
             <td>{x.amount}</td>
           </tr>
