@@ -1,8 +1,12 @@
 import React from 'react';
-import useExpensesData from './useExpensesData';
+import AppContext from './AppContext';
 
 export default () => {
-  const  billsData  = useExpensesData();
+  const [data, setData] = React.useState([]);
+  const { expenseData } = React.useContext(AppContext);
+  React.useEffect(() => {
+      expenseData.getExpensesData(setData);
+  },[]);
 
   return (
     <table className='table table-striped' aria-labelledby="tabelLabel">
@@ -17,7 +21,7 @@ export default () => {
         </tr>
       </thead>
       <tbody>
-        {billsData.map(x => (
+        {data.map(x => (
           <tr>
             <td>{x.dateString}</td>
             <td>{x.weekNum}</td>
