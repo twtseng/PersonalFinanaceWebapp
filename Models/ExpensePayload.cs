@@ -23,7 +23,7 @@ namespace PersonalFinanceWebapp.Models
             this.Category = bill.Bucket;
             this.Date = bill.Date.Value;
             this.DateString = bill.DateString;
-            this.Description = bill.Bucket;
+            this.Description = bill.Description;
             this.Month = bill.Month;
             this.Source = bill.Source;
             this.WeekNum = bill.WeekNum.Value;
