@@ -51,7 +51,11 @@ namespace PersonalFinanceWebapp.Controllers
             }
             else
             {
-                expenseData.ForEach(x => x.Description = "<Restricted data>");
+                decimal maxVal = expenseData.Max(x => x.Amount);
+                expenseData.ForEach(x => {
+                    x.Description = "<Restricted data>";
+                    x.Amount = x.Amount * 10000 / maxVal;
+                });
                 return expenseData;
             }
         }
