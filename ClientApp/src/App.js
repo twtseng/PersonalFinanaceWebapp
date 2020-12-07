@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import BillDetails from './components/BillDetails';
-import Pivot from './components/Pivot';
+import PivotView from './components/PivotView';
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
 import { ApplicationPaths } from './components/api-authorization/ApiAuthorizationConstants';
@@ -16,7 +16,7 @@ export default () => {
   return (
     <AppContext.Provider value={{expenseData}}>
       <Layout>
-        <AuthorizeRoute exact path='/' component={Pivot} />
+        <AuthorizeRoute exact path='/' component={PivotView} />
         <AuthorizeRoute path='/billDetails' component={BillDetails} />
         <AuthorizeRoute path='/test' component={Test} />
         <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} />

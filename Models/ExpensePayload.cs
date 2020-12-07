@@ -9,6 +9,8 @@ namespace PersonalFinanceWebapp.Models
     {
         public DateTime Date { get; set; }
         public int WeekNum { get; set; }
+        public int MonthId { get; set; }
+        public int WeekId { get; set; }
         public string Source { get; set; }
         public string Category { get; set; }
         public string Description { get; set; }
@@ -27,6 +29,8 @@ namespace PersonalFinanceWebapp.Models
             this.Month = bill.Month;
             this.Source = bill.Source;
             this.WeekNum = bill.WeekNum.Value;
+            this.MonthId = bill.MonthId.Value;
+            this.WeekId = bill.WeekId.Value;
             this.Year = bill.Year;
         }
     }

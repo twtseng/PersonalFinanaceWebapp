@@ -9,6 +9,8 @@ namespace PersonalFinanceWebapp.Models
     {
         public DateTime? Date { get; set; }
         public int? WeekNum { get; set; }
+        public int? MonthId { get; set; }
+        public int? WeekId { get; set; }
         public string Source { get; set; }
         public string Bucket { get; set; }
         public string Description { get; set; }
