@@ -1,6 +1,6 @@
 import React from 'react'
 import 'react-pivottable/pivottable.css';
-import Jumbotron from 'reactstrap/lib/Jumbotron';
+import { Alert } from 'reactstrap';
 import AppContext from './AppContext';
 import Pivot from './Pivot';
 
@@ -43,7 +43,7 @@ const PivotView = () => {
         <div>
             {
                 data[0] !== undefined && data[0].description === "<Restricted data>"
-                && <Jumbotron>You are not authorized to view the actual data. Sensitive data is masked and actual numbers have been artificially scaled.</Jumbotron>
+                && <Alert color="warning"><b>NOTE:</b> You are not authorized to view the actual data. Sensitive data is masked and actual numbers have been artificially scaled.</Alert>
             }
             <Pivot title="Past 2 months" pivotprops={{
                 aggregatorName:"Sum", 

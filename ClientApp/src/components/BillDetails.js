@@ -1,5 +1,7 @@
 import React from 'react';
 import AppContext from './AppContext';
+import Pivot from './Pivot';
+import { Alert } from 'reactstrap';
 
 export default () => {
   const [data, setData] = React.useState([]);
@@ -9,29 +11,17 @@ export default () => {
   },[]);
 
   return (
-    <table className='table table-striped' aria-labelledby="tabelLabel">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>WeekNum</th>
-          <th>Source</th>
-          <th>Category</th>
-          <th>Description</th>
-          <th>Amt</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map(x => (
-          <tr>
-            <td>{x.dateString}</td>
-            <td>{x.weekNum}</td>
-            <td>{x.source}</td>
-            <td>{x.category}</td>
-            <td>{x.description}</td>
-            <td>{x.amount}</td>
-          </tr>
-          ))}
-      </tbody>
-    </table>
+    <div>
+    {
+        data[0] !== undefined && data[0].description === "<Restricted data>"
+        && <Alert color="warning"><b>NOTE:</b> You are not authorized to view the actual data. Sensitive data is masked and actual numbers have been artificially scaled.</Alert>
+    }
+    <Pivot title="Bill details" pivotprops={{
+        aggregatorName:"Sum", 
+        vals:["amount"], 
+        rows:["date","category","description"], 
+        }} />
+   
+</div>
   );
 }
