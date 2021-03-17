@@ -6,4 +6,6 @@ The bank statements are uploaded to an Azure storage container, where they are p
 
 The tool is online at: https://twtseng-personalfinance.azurewebsites.net/
 
-NOTE: The full data is only visible to me. Guest users will see masked text and artificially scaled numbers, but the proportions (percentages) between the numbers are preserved. 
+NOTE: The full data is only visible to me. Guest users will see masked text and artificially scaled numbers, but the proportions (percentages) between the numbers are preserved.
+
+twtseng_new_feature: New line 3/17/21 9:48 AM
